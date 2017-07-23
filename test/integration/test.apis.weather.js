@@ -17,7 +17,7 @@
 'use strict';
 require('dotenv').config({ silent: true });
 
-var weather = require('../../lib/api/weather');
+var weather = require('../../lib/api/products');
 
 describe('weather.js', function() {
   this.timeout(5000);
