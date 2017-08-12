@@ -104,6 +104,8 @@ var ConversationPanel = (function() {
   function displayMessage(newPayload, typeValue) {
     if (initial)
       return;
+    console.log("displaying message ");
+    console.log(newPayload);
     var isUser = isUserMessage(typeValue);
     var textExists = (newPayload.input && newPayload.input.text)
       || (newPayload.output && newPayload.output.text);
@@ -149,7 +151,18 @@ var ConversationPanel = (function() {
     if (Array.isArray(currentText)) {
 		//currentText = currentText.join('<br/>');
 		//FIX for empty string at UI
-		currentText = currentText.filter(function (val) {return val;}).join('<br/>');
+
+		currentText = currentText.map(function (val) {
+		  if(val.startsWith("http")) {
+		      console.log('startsWith');
+		      console.log(val);
+              return '<img src="' + val + '" width="300px" />';
+          } else {
+		      console.log(val);
+              return val;
+          }
+		}).join('<br/>');
+		console.log(currentText);
     }
     var messageArray = [];
     var summary = '&nbsp';
