@@ -1,5 +1,6 @@
 node_modules
 bower_components
+resources
 src/bower_components
 npm-debug.log
 coverage
@@ -7,3 +8,4 @@ coverage
 .classpath
 .project
 .env
+.idea

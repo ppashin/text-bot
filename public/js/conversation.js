@@ -145,8 +145,23 @@ var ConversationPanel = (function() {
     return null;
   }
 
+  function addProductsFromContext(payload) {
+    console.log(payload);
+    if(payload.context != null && payload.output != null && payload.context.products != null) {
+      var i = 1;
+      payload.context.products.forEach(function(product) {
+        payload.output.text.push("");
+        payload.output.text.push("#"+i+": "+ product.title+ "("+product.price+")");
+        payload.output.text.push(product.image);
+        //payload.output.text.push(product.price);
+        i++;
+      });
+    }
+  }
+
   // Constructs new DOM element from a message payload
   function buildMessageDomElements(newPayload, isUser) {
+    addProductsFromContext(newPayload);
     var currentText = isUser ? newPayload.input.text : newPayload.output.text;
     if (Array.isArray(currentText)) {
 		//currentText = currentText.join('<br/>');
@@ -154,15 +169,11 @@ var ConversationPanel = (function() {
 
 		currentText = currentText.map(function (val) {
 		  if(val.startsWith("http")) {
-		      console.log('startsWith');
-		      console.log(val);
-              return '<img src="' + val + '" width="300px" />';
+              return '<img src="' + val + '" style="max-width: 100px; max-height: 100px;" />';
           } else {
-		      console.log(val);
               return val;
           }
 		}).join('<br/>');
-		console.log(currentText);
     }
     var messageArray = [];
     var summary = '&nbsp';
