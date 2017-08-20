@@ -151,7 +151,7 @@ var ConversationPanel = (function() {
       var i = 1;
       payload.context.products.forEach(function(product) {
         payload.output.text.push("");
-        payload.output.text.push("#"+i+": "+ product.title+ "("+product.price+")");
+        payload.output.text.push("#"+i+": "+ product.title+ " ("+product.price+")");
         payload.output.text.push(product.image);
         //payload.output.text.push(product.price);
         i++;
