@@ -13,3 +13,11 @@ applications:
   command: npm start
   path: .
   memory: 512M
+  env:
+    USE_TWILIO: true
+    USE_TWILIO_SMS: true
+    TWILIO_ACCOUNT_SID: ACab8038a83959f20aca659224581a130e
+    TWILIO_AUTH_TOKEN: 126f4807c28ab85448b12f615c670cd9
+    TWILIO_IPM_SERVICE_SID: MG5c9a0cd3cee1617eb8399cb176844c28
+    TWILIO_NUMBER: +13473219440
+    DEBUG: '*'
