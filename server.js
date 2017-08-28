@@ -45,19 +45,11 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static('public'));
 
-// Helper Function to check for enviornment variables
-var checkAndRequire = function(envItem, toRequire, debugMessage) {
-  if (envItem && envItem.match(/true/i)) {
-    if (debugMessage) {
-        debug(debugMessage);
-    }
-    require(toRequire)(app,controller);
-  }
-};
 
 // configure the channels
 var controller = require('./lib/controller');
 var twilioSMS = require('./lib/bot/twilio-sms')(app, controller);
+var webUI = require('./lib/bot/web-ui')(app, controller);
 
 http.listen(port, function () {
   debug('Server listening on port: ' + port);
