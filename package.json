@@ -21,7 +21,7 @@
     "bluebird": "^3.4.3",
     "body-parser": "^1.15.1",
     "botkit": "^0.2.2",
-    "botkit-sms": "^1.0.7",
+    "botkit-sms": "https://github.com/krismuniz/botkit-sms",
     "bower": "^1.7.9",
     "cf-deployment-tracker-client": "^0.x",
     "cloudant": "^1.4.2",

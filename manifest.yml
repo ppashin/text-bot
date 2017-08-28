@@ -14,7 +14,6 @@ applications:
   path: .
   memory: 512M
   env:
-    USE_TWILIO: true
     USE_TWILIO_SMS: true
     TWILIO_ACCOUNT_SID: ACab8038a83959f20aca659224581a130e
     TWILIO_AUTH_TOKEN: 126f4807c28ab85448b12f615c670cd9

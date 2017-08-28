@@ -26,6 +26,7 @@ var port = process.env.VCAP_APP_PORT || process.env.PORT || 3000;
 var http = require('http').Server(app);
 var debug = require('debug')('bot:server');
 
+
 // Deployment tracking
 require('cf-deployment-tracker-client').track();
 
@@ -37,6 +38,11 @@ app.use('/api/', rateLimit({
   max: 15
 }));
 app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 app.use(express.static('public'));
 
 // Helper Function to check for enviornment variables
@@ -51,10 +57,7 @@ var checkAndRequire = function(envItem, toRequire, debugMessage) {
 
 // configure the channels
 var controller = require('./lib/controller');
-checkAndRequire(process.env.USE_FACEBOOK, './lib/bot/facebook','Initializing FB Messenger Bot');
-checkAndRequire(process.env.USE_TWILIO, './lib/bot/twilio', 'Initializing Twilio Bot');
-checkAndRequire(process.env.USE_TWILIO_SMS, './lib/bot/twilio-sms', 'Initializing Twilio SMS Bot');
-checkAndRequire(process.env.USE_WEBUI, './lib/bot/web-ui', 'Initializing WebUI');
+var twilioSMS = require('./lib/bot/twilio-sms')(app, controller);
 
 http.listen(port, function () {
   debug('Server listening on port: ' + port);
